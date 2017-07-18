@@ -10,8 +10,10 @@ class Validator
         $errors = [];
 
         foreach ($validation_data as $name => $value) {
-            if (isset($_REQUEST[$name])) {
-                
+
+            // //this check really isn't necessary
+            // if (isset($_REQUEST[$name])) {
+
                 //$value can have one or more rules
                 $rules = explode("|", $value);
 
@@ -41,11 +43,13 @@ class Validator
                             break;
                         default:
                             //do nothing
+                            $errors[] = "No value found!";
                     }
                 }
-            } else {
-                $errors[] = "No value found!";
-            }
+                
+            // } else {
+            //     $errors[] = "No value found!";
+            // }
         }
         return $errors;
         //return false;
